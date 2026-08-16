@@ -3,7 +3,8 @@ package com.example.web01.controller;
 import com.example.web01.pojo.Dept;
 import com.example.web01.pojo.Result;
 import com.example.web01.service.DeptService;
-import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,8 @@ import java.util.List;
 
 @RestController
 public class DeptController {
+
+    private static final Logger log = LoggerFactory.getLogger(DeptController.class);
 
     @Autowired
     private DeptService deptService;
@@ -25,7 +28,8 @@ public class DeptController {
     }
     @DeleteMapping("/depts")
     public Result delete(@RequestParam("id") Integer deptId){
-        System.out.println("根据ID删除部门: " + deptId);
+        log.info("根据ID删除部门: {}", deptId);
+        deptService.deleteById(deptId);
         return Result.success();
     }
 }
