@@ -15,8 +15,7 @@ public interface DeptMapper {
      */
     @Results({@Result(column = "create_time", property = "createTime"),
             @Result(column = "update_time", property = "updateTime")})
-    //@Select("select id, name, create_time createTime, update_time updateTime from dept")
-    @Select("select * from dept")
+    @Select("select id, name, create_time, update_time from dept")
     public List<Dept> findAll();
 
 }

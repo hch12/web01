@@ -1,13 +1,13 @@
 spring:
   application:
     name: tlias-web-management
-  #mysql连接配置
+  #mysql连接配置（凭据通过环境变量注入，不要写入代码库）
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/web01
-    username: root
-    password: 12345678
+    url: ${DB_URL:jdbc:mysql://localhost:3306/web01}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 mybatis:
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
     map-underscore-to-camel-case: true
